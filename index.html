@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="./assets/css/reset.css">
+
+    <!-- Bootstrap v4 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Multiplayer Rock Paper Scissors Game</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2 class="text-center">Hi,<span class="playerName"></span>!</h2>
+        <div class="d-flex align-items-center">
+            <!-- Player 1 Panel -->
+            <div id="playerOne">
+                <h2><span class="badge badge-secondary yourturn">Player 1</span></h2>
+                <div class="card" style="width: 20rem;">
+                    <img class="card-img-top" src="./assets/images/rock.png" alt="User choice">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Wins = <span id="p1WinCountSpan"></span> | Losses = <span id="p1LoseCountSpan"></span></h4>
+                        <div id="p1ChoiceDiv" class="d-flex justify-content-around">
+                            <a href="#" class="btn btn-info" data-userChoice="rock">Rock</a>
+                            <a href="#" class="btn btn-info" data-userChoice="paper">Paper</a>
+                            <a href="#" class="btn btn-info" data-userChoice="scissors">Scissors</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Results Panel -->
+            <div id="resultsPanel" class="card text-white" style="width: 20rem;">
+                <div class="card-body bg-dark text-center">
+                    <h4>Welcome!</h4>
+                </div>
+            </div>
+            <!-- Player 2 Panel -->
+            <div id="playerTwo">
+                <h2><span class="badge badge-secondary">Player 2</span></h2>
+                <div class="card" style="width: 20rem;">
+                    <img class="card-img-top" src="./assets/images/scissors.png" alt="User choice">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Wins =  <span id="p2WinCountSpan"></span> | Losses = <span id="p2LoseCountSpan"></span></h4>
+                        <div id="p2ChoiceDiv" class="d-flex justify-content-around">
+                            <a href="#" class="btn btn-info" data-userChoice="rock">Rock</a>
+                            <a href="#" class="btn btn-info" data-userChoice="paper">Paper</a>
+                            <a href="#" class="btn btn-info" data-userChoice="scissors">Scissors</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Chat Section-->
+        <section id="chat">
+            <p class="list-group-item text-center"><strong>Opponent Chat</strong></p>
+            <div class="d-flex">
+                <input type="text" class="form-control" id="message" placeholder="Enter Message">
+                <button id="chatSend" type="submit" class="btn btn-dark">Send</button>
+            </div>
+            <ul class="list-group"></ul>
+        </section>
+
+        <!-- Modal Start -->
+        <div class="modal fade" id="startGame" tabindex="-1" role="dialog" aria-labelledby="startGameLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="startGameLabel">Rock Paper Scissors - Multiplayer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="instructions" class="bg-light modal-body">
+                        <div class="d-flex justify-content-center">
+                            <form class="modal-footer form-inline">
+                                <label for="name" class="sr-only">Name:</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter player's name">
+                                <button id="lego" class="btn btn-info" type="button" data-dismiss="modal">Enter</button>
+                            </form>
+                        </div>
+                        <br />
+                        <h3><strong>Instructions:</strong></h3>
+                        <p>This is a 2 player Rock-Paper-Scissors game. You can only start playing once there are 2
+                            players online.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap v4 JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <!-- Link to Local JavaScript -->
+    <script src="./assets/js/app.js"></script>
+</body>
+
+</html>

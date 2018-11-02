@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+    outline: none;
+}
+.container {
+    margin-bottom: 25px;
+}
+.card {
+    background-color: #fee834;
+}
+.card img{
+    width: 150px;
+    padding: 1em 0;
+    margin: 0 auto;
+}
+.card-body{
+    background-color: black;
+    color: white;
+}
+.card-body a.btn{
+    background-color:  #fee834;
+    color: black;
+}
+#resultsPanel{
+    margin: 0 1em;
+    border-radius: 35px;
+}
+#resultsPanel>.card-body{
+    border-radius: 35px;
+}
+.badge-secondary{
+    display: block !important;
+    border: 4px solid grey;
+    background-color: black;
+    margin: 0 auto;
+    width: 120px;
+}
+.yourturn{
+    border: 4px solid lightblue;
+    color: lightblue;
+}
+#chat{
+    margin-top: 1em;
+}
+#chat>p{
+    background-color: #fee834;
+    padding: 0.1em;
+    border-radius: 3px;
+}
