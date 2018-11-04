@@ -19,6 +19,8 @@ $(function() {
     const playersRef = db.ref('players'); // Reference entire players folder 
     const p1Ref = playersRef.child('p1'); // Reference entire P1 folder
     const p2Ref = playersRef.child('p2'); // Reference entire P2 folder
+    const p1Name = playersRef.child('p1').child('name'); // Reference player name
+    const p2Name = playersRef.child('p2').child('name'); // Reference player name
     const winsRef = db.ref('win');    // Reference both player wins
     const losesRef = db.ref('losses');    // Reference both player losses
     const turnRef = db.ref('turn'); // to track the turns
@@ -45,9 +47,7 @@ $(function() {
     const $p1Panel = $('#playerOne');
     const $p2Panel = $('#playerTwo');
     const $p1Badge = $p1Panel.find('.badge');
-    const $p2Badge = $p2Panel.find('.badge'); 
-    const $p1NameSpan = $('.playerOneName');
-    const $p2NameSpan = $('.playerTwoName');
+    const $p2Badge = $p2Panel.find('.badge');  
     const $pNameSpan = $('span.playerName');
     const $p1choice = $('#p1ChoiceDiv');
     const $p2choice = $('#p2ChoiceDiv');
@@ -139,20 +139,20 @@ $(function() {
         });
     }
 
-    p1Ref.on('child_changed'), (snap) => {
+    p1Name.on('child_changed', (snap) => {
         console.log('p1Ref child_changed snap is: ', snap);
         console.log('p1Ref child_changed snap.val() is: ', snap.val());
         console.log("Player 1 has entered a name");
         $("#playerOne .badge-secondary").text(snap.val());
-    }
+    });
 
-
-    p2Ref.on('child_changed'), (snap) => {
+    p2Name.on('child_changed', (snap) => {
         console.log('p2Ref child_changed snap is: ', snap);
         console.log('p2Ref child_changed snap.val() is: ', snap.val());
         console.log("Player 2 has entered a name");
         $("#playerTwo .badge-secondary").text(snap.val());
-    }
+    });
+    
     turnRef.on('child_changed', (snap) => { // Listen for turn changes
         let pturn = snap.val();
         console.log(`It's ${pturn}`);
