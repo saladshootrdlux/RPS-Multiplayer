@@ -63,7 +63,8 @@ $(function() {
     const $chatUl = $('#chat').find('ul');
 
     // Functions
-    const playerName = () => {
+    const playerName = () => {        
+        console.log("playerName called: ", this);
         connectedRef.on('value', (snap) => { // Check if someone connected/disconnected
             if(snap.val()){ // If someone connected
                 connectionsRef.push(true);
@@ -74,6 +75,8 @@ $(function() {
             console.log(`Number of players online ${snap.numChildren()}`); 
             activePnum = snap.numChildren();    // Get the number of connections at the moment
             pNameVal = $pName.val(); // Get the name of the user
+            console.log("playerName pNameVal: ", pNameVal);
+            console.log("playerName activePnum: ", activePnum);
             $pNameSpan.html(` ${pNameVal}`); // Greet current player
 
             if(activePnum == 1) { // If you're the 1st player
@@ -81,6 +84,10 @@ $(function() {
                 $chatUl.empty(); // Clear the HTML
                 
                 p1NameVal = pNameVal;   // Store the current name into a new variable to keep track inside the app
+
+                console.log("I Am player 1 yay");
+                $("#playerOne .badge-secondary").text(p1NameVal);
+
                 // Create the object
                 const p1 = {
                     choice: '',
@@ -102,7 +109,8 @@ $(function() {
             }
             else if(activePnum == 2) {  // If you are the 2nd player
                 p2NameVal = pNameVal;   // Store the current name into a different variable to keep track
-                
+                console.log("I Am player 2 yay");
+                $("#playerOne .badge-secondary").text(pNameVal);
                 const p2 = {
                     choice: '',
                     name: p2NameVal
@@ -226,7 +234,7 @@ $(function() {
         return e => {
             let theTarget = $(e.target);
             let pChoice = theTarget.attr('data-userChoice');    // Get player choice attr from the clicked button
-            leTarget.closest('div.card').find('img').attr('src', `./assets/images/${pChoice}.png`); // Change the img to match the user's choice
+            theTarget.closest('div.card').find('img').attr('src', `./assets/images/${pChoice}.png`); // Change the img to match the user's choice
             if (pturn == 'p1turn'){
                 p1Choice = pChoice; // store the the data-userChoice attr value in a variable
                 p1Ref.update({ choice: p1Choice }); //Update the database with the user choice
