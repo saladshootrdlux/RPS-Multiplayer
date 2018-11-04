@@ -62,6 +62,7 @@ $(function() {
     const $chatInput = $('#message');
     const $chatUl = $('#chat').find('ul');
 
+
     // Functions
     const playerName = () => {        
         console.log("playerName called: ", this);
@@ -71,6 +72,7 @@ $(function() {
                 connectionsRef.onDisconnect().remove(); // Remove user from the connection list when they disconnect
             }
         });
+
         connectionsRef.on('value', (snap) => { // If I just moved someone to my connection folder
             console.log(`Number of players online ${snap.numChildren()}`); 
             activePnum = snap.numChildren();    // Get the number of connections at the moment
@@ -95,7 +97,7 @@ $(function() {
                 };
                 const t = { whoseturn: turn };
 
-                // Sync object
+                // Set player one name and sync to firebase
                 p1Ref.set(p1);
                 turnRef.set(t);
 
@@ -110,7 +112,7 @@ $(function() {
             else if(activePnum == 2) {  // If you are the 2nd player
                 p2NameVal = pNameVal;   // Store the current name into a different variable to keep track
                 console.log("I Am player 2 yay");
-                $("#playerOne .badge-secondary").text(pNameVal);
+                $("#playerTwo .badge-secondary").text(pNameVal);
                 const p2 = {
                     choice: '',
                     name: p2NameVal
@@ -123,7 +125,7 @@ $(function() {
                     p1: p1Losses,
                     p2: p2Losses
                 }
-                // Sync object
+                // Set player two name and sync to firebase
                 p2Ref.set(p2); 
                 winsRef.set(w);
                 losesRef.set(l);
@@ -137,6 +139,20 @@ $(function() {
         });
     }
 
+    p1Ref.on('child_changed'), (snap) => {
+        console.log('p1Ref child_changed snap is: ', snap);
+        console.log('p1Ref child_changed snap.val() is: ', snap.val());
+        console.log("Player 1 has entered a name");
+        $("#playerOne .badge-secondary").text(snap.val());
+    }
+
+
+    p2Ref.on('child_changed'), (snap) => {
+        console.log('p2Ref child_changed snap is: ', snap);
+        console.log('p2Ref child_changed snap.val() is: ', snap.val());
+        console.log("Player 2 has entered a name");
+        $("#playerTwo .badge-secondary").text(snap.val());
+    }
     turnRef.on('child_changed', (snap) => { // Listen for turn changes
         let pturn = snap.val();
         console.log(`It's ${pturn}`);
