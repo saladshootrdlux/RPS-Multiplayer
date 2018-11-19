@@ -25,5 +25,5 @@
 * Visual Studio Code
 * GitHub Pages
 
-## Built With
+## Try it Out!
 Link to app: https://saladshootrdlux.github.io/RPS-Multiplayer/
